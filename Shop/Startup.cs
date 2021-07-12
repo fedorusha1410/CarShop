@@ -30,10 +30,7 @@ namespace Shop
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppBDContent>(options =>
-            {
-                options.UseSqlServer(_confString.GetConnectionString("DefaultConnection"));
-            });         
+            services.AddDbContext<AppBDContent>(options => options.UseSqlServer(_confString.GetConnectionString("DefaultConnection")));         
             services.AddTransient<IAllCars, CarRepository>();
             services.AddTransient<ICarsCategory, CategoryRepository>();
             services.AddMvc(option => option.EnableEndpointRouting = false);
@@ -46,6 +43,13 @@ namespace Shop
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
+          
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                AppBDContent content = scope.ServiceProvider.GetRequiredService<AppBDContent>();
+                DbObjects.Initial(content);
+            }
+
 
         }
     }
