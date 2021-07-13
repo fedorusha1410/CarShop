@@ -3,13 +3,10 @@
     <h3>@Model.currentCategory</h3>
     Все автомобили
 </h1>
-@{ 
-    foreach (var car in Model.allCars)
+@{
+    foreach (Car car in Model.allCars)
     {
-        <div>
-            <h2>Model: @car.name</h2>
-            <p>Price: @car.price.ToString("c")</p>
-            
-        </div>
+        @Html.Partial("AllCars", car)
     }
+
 }
