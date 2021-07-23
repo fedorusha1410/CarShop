@@ -30,7 +30,18 @@ namespace Shop.Data
                         isFavourite = true,
                         available = true,
                         Category = Categories["Электромобиль"]
-                    }
+                    },
+                     new Car
+                     {
+                         name = "Volvo",
+                         shortDesc = "",
+                         longDesc = "",
+                         img = "/img/tesla-model-ljpg.jpg",
+                         price = 2500,
+                         isFavourite = true,
+                         available = true,
+                         Category = Categories["Классический автомобиль"]
+                     }
                     );
             }
             content.SaveChanges();

@@ -15,6 +15,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Shop.Data.Repository;
 using Shop.Data.Models;
+using Microsoft.AspNetCore.Routing;
 
 namespace Shop
 {
@@ -34,9 +35,10 @@ namespace Shop
             services.AddDbContext<AppBDContent>(options => options.UseSqlServer(_confString.GetConnectionString("DefaultConnection")));         
             services.AddTransient<IAllCars, CarRepository>();
             services.AddTransient<ICarsCategory, CategoryRepository>();
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped(sp => ShopCart.GetCart(sp));
+            services.AddTransient<IAllOrders, OrdersRepository>();
 
+            services.AddScoped(sp => ShopCart.GetCart(sp));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddMvc(option => option.EnableEndpointRouting = false);
             services.AddMemoryCache();
             services.AddSession();
@@ -49,8 +51,12 @@ namespace Shop
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseSession();
-            app.UseMvcWithDefaultRoute();
-             
+            //app.UseMvcWithDefaultRoute();
+            app.UseMvc(routes => 
+                      { routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
+                        routes.MapRoute(name: "categoryFilter", template: "Car/{action}/{category?}",
+                                                       defaults: new { Controller = "Car", action = "List" });
+                          });
 
             using (var scope = app.ApplicationServices.CreateScope())
             {

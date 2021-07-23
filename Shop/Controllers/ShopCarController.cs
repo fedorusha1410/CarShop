@@ -17,7 +17,7 @@ namespace Shop.Controllers
 
         private readonly ShopCart _shopCar;
 
-        public ShopCarController(CarRepository carRepository, ShopCart shopCart) {
+        public ShopCarController(IAllCars carRepository, ShopCart shopCart) {
 
             this._carRep = carRepository;
             this._shopCar = shopCart;

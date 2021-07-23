@@ -186,3 +186,6 @@ D:\asp.net_core\CarShop\Shop\obj\Debug\netcoreapp3.1\Shop.pdb
 D:\asp.net_core\CarShop\Shop\obj\Debug\netcoreapp3.1\Shop.genruntimeconfig.cache
 D:\asp.net_core\CarShop\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Shared\AllCars.cshtml.g.cs
 D:\asp.net_core\CarShop\Shop\obj\Debug\netcoreapp3.1\Razor\Views\ShopCar\Index.cshtml.g.cs
+D:\asp.net_core\CarShop\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+D:\asp.net_core\CarShop\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Order\Checkout.cshtml.g.cs
+D:\asp.net_core\CarShop\Shop\obj\Debug\netcoreapp3.1\Razor\Views\Order\Complete.cshtml.g.cs
